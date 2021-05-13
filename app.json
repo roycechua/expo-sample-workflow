@@ -1,0 +1,12 @@
+{
+  "name": "expo-sample-workflow",
+  "displayName": "expo-sample-workflow",
+  "expo": {
+    "name": "expo-sample-workflow",
+    "slug": "expo-sample-workflow",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
