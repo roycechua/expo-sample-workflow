@@ -9,7 +9,7 @@ import {
 
 import Screen from '../../common/components/Screen';
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
-import { login, resetAuth } from './loginSlice';
+import { login, resetAuth } from './authSlice';
 
 const LoginScreen = (props: any) => {
 	const { isLoggedIn, attemptingLogin } = useAppSelector(

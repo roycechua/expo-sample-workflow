@@ -1,21 +1,24 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import type { RootState } from '../../redux/store';
+import authAPI from './authAPI';
 
 const initialState = {
 	isLoggedIn: false,
 	attemptingLogin: false,
+	token: '',
 };
 
-const loginSlice = createSlice({
+const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
 		attemptLogin: (state) => {
 			state.attemptingLogin = true;
 		},
-		setLoginSuccessful: (state) => {
+		setLoginSuccessful: (state, action) => {
 			state.isLoggedIn = true;
-			state.attemptingLogin = false;
+			(state.token = action.payload.token),
+				(state.attemptingLogin = false);
 		},
 		setLoginFailed: (state) => {
 			state.isLoggedIn = false;
@@ -26,7 +29,7 @@ const loginSlice = createSlice({
 });
 
 export const { attemptLogin, setLoginSuccessful, setLoginFailed, resetAuth } =
-	loginSlice.actions;
+	authSlice.actions;
 
 // selectors
 export const authStatus = (state: RootState) => state.auth.isLoggedIn;
@@ -42,9 +45,16 @@ export const login = (payload: any) => async (dispatch: Dispatch) => {
 				}, 2000);
 			}
 		);
+
+		// Actual API Call
+		// const res = await authAPI.login({
+		//     email: '',
+		//     password: '',
+		// })
+
 		if (res.status == 200) {
 			alert('Login successful');
-			dispatch(setLoginSuccessful());
+			dispatch(setLoginSuccessful({ token: res.token }));
 		} else {
 			alert('Login failed');
 			dispatch(setLoginFailed());
@@ -55,4 +65,4 @@ export const login = (payload: any) => async (dispatch: Dispatch) => {
 	}
 };
 
-export default loginSlice.reducer;
+export default authSlice.reducer;

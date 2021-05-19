@@ -6,7 +6,7 @@ import {
 	Middleware,
 	MiddlewareArray,
 } from '@reduxjs/toolkit';
-import loginSlice from '../screens/auth/loginSlice';
+import loginSlice from '../screens/auth/authSlice';
 
 const middlewares: Middleware[] = [];
 
