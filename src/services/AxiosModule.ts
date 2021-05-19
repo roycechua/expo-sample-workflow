@@ -74,5 +74,5 @@ export default {
 		axiosWrapper({ method: 'PUT', data, endpoint, token, headers }),
 
 	delete: ({ endpoint, token, headers }: APIMethodInterface) =>
-		axiosWrapper({ method: 'GET', endpoint, token, headers }),
+		axiosWrapper({ method: 'DELETE', endpoint, token, headers }),
 };
