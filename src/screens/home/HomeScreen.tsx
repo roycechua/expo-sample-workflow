@@ -13,7 +13,7 @@ const HomeScreen = (props: any) => {
 	return (
 		<Screen center>
 			<Text>Home Screen</Text>
-			<Button onPress={() => dispatch(resetAuth())}>Logout</Button>
+			<Button icon="logout" onPress={() => dispatch(resetAuth())}>Logout</Button>
 		</Screen>
 	);
 };

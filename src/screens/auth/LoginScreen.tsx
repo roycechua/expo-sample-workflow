@@ -18,6 +18,7 @@ const LoginScreen = (props: any) => {
 			<Text>Login Screen</Text>
 			<Button 
 				onPress={() => dispatch(login(''))}
+				icon="login"
 				loading={attemptingLogin}
 				disabled={attemptingLogin}
 			>
