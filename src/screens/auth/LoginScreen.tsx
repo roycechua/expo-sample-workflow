@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
 	ActivityIndicator,
 	Button,
@@ -12,10 +12,16 @@ import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import { login, resetAuth } from './authSlice';
 
 const LoginScreen = (props: any) => {
+	const { navigation } = props;
+
 	const { isLoggedIn, attemptingLogin } = useAppSelector(
 		(state) => state.auth
 	);
 	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		navigation.navigate('Home');
+	}, [isLoggedIn])
 
 	return (
 		<Screen center>
