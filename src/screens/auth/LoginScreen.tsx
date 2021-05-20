@@ -1,12 +1,6 @@
 import React, { useEffect } from 'react';
-import {
-	ActivityIndicator,
-	Button,
-	StyleSheet,
-	Text,
-	View,
-} from 'react-native';
-
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { Text, Button } from 'react-native-paper';
 import Screen from '../../common/components/Screen';
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import { login, resetAuth } from './authSlice';
@@ -19,28 +13,16 @@ const LoginScreen = (props: any) => {
 	);
 	const dispatch = useAppDispatch();
 
-	useEffect(() => {
-		navigation.navigate('Home');
-	}, [isLoggedIn])
-
 	return (
 		<Screen center>
 			<Text>Login Screen</Text>
-			{attemptingLogin ? (
-				<ActivityIndicator color='blue' size='large' />
-			) : null}
-			{isLoggedIn ? (
-				<Button onPress={() => dispatch(resetAuth())} title='Logout' />
-			) : (
-				<>
-					{!attemptingLogin ? (
-						<Button
-							onPress={() => dispatch(login(''))}
-							title='Login'
-						/>
-					) : null}
-				</>
-			)}
+			<Button 
+				onPress={() => dispatch(login(''))}
+				loading={attemptingLogin}
+				disabled={attemptingLogin}
+			>
+				Login
+			</Button>
 		</Screen>
 	);
 };

@@ -1,15 +1,23 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import Screen from '../../common/components/Screen'
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { Button, Text } from 'react-native-paper';
+import Screen from '../../common/components/Screen';
+import { useAppDispatch } from '../../redux/hooks';
+import { resetAuth } from '../auth/authSlice';
 
-const HomeScreen = (props : any) => {
-    return (
-        <Screen>
-            <Text>Home Screen</Text>
-        </Screen>
-    )
-}
+const HomeScreen = (props: any) => {
+    const { navigation } = props;
+    
+	const dispatch = useAppDispatch();
 
-export default HomeScreen
+	return (
+		<Screen center>
+			<Text>Home Screen</Text>
+			<Button onPress={() => dispatch(resetAuth())}>Logout</Button>
+		</Screen>
+	);
+};
 
-const styles = StyleSheet.create({})
+export default HomeScreen;
+
+const styles = StyleSheet.create({});
